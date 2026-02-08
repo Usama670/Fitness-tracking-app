@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker - Track Your Progress</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- ============================================
+         AUTHENTICATION SCREEN
+    ============================================ -->
+    <div id="authScreen" class="auth-screen">
+        <div class="auth-container">
+            <div class="auth-header fade-in">
+                <div class="auth-icon">💪</div>
+                <h1 class="auth-title">Fitness Tracker</h1>
+                <p class="auth-subtitle">Track your workouts and achieve your goals</p>
+            </div>
+
+            <!-- Login Form -->
+            <div id="loginForm" class="card auth-card scale-in">
+                <h2 class="form-title">Welcome Back</h2>
+                
+                <form id="loginFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input 
+                            type="email" 
+                            id="loginEmail" 
+                            class="form-input"
+                            placeholder="your@email.com"
+                            required
+                        >
+                        <span class="error-message" id="loginEmailError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input 
+                            type="password" 
+                            id="loginPassword" 
+                            class="form-input"
+                            placeholder="••••••••"
+                            required
+                        >
+                        <span class="error-message" id="loginPasswordError"></span>
+                    </div>
+
+                    <div id="loginError" class="alert alert-error hidden"></div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        Sign In
+                    </button>
+                </form>
+
+                <div class="form-footer">
+                    <p class="footer-text">
+                        Don't have an account? 
+                        <button id="showSignupBtn" class="link-button">Sign Up</button>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signupForm" class="card auth-card hidden scale-in">
+                <h2 class="form-title">Create Account</h2>
+                
+                <form id="signupFormElement" class="auth-form">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input 
+                            type="text" 
+                            id="signupName" 
+                            class="form-input"
+                            placeholder="John Doe"
+                            required
+                        >
+                        <span class="error-message" id="signupNameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input 
+                            type="email" 
+                            id="signupEmail" 
+                            class="form-input"
+                            placeholder="your@email.com"
+                            required
+                        >
+                        <span class="error-message" id="signupEmailError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input 
+                            type="password" 
+                            id="signupPassword" 
+                            class="form-input"
+                            placeholder="••••••••"
+                            required
+                        >
+                        <span class="error-message" id="signupPasswordError">Password must be at least 6 characters</span>
+                    </div>
+
+                    <div id="signupError" class="alert alert-error hidden"></div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        Create Account
+                    </button>
+                </form>
+
+                <div class="form-footer">
+                    <p class="footer-text">
+                        Already have an account? 
+                        <button id="showLoginBtn" class="link-button">Sign In</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         MAIN APPLICATION
+    ============================================ -->
+    <div id="appScreen" class="hidden">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-container">
+                <div class="header-brand">
+                    <span class="brand-icon">💪</span>
+                    <div class="brand-info">
+                        <h1 class="brand-title">Fitness Tracker</h1>
+                        <p class="brand-welcome" id="userWelcome">Welcome back!</p>
+                    </div>
+                </div>
+                <button id="logoutBtn" class="btn btn-logout">
+                    Logout
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <!-- Total Workouts -->
+                <div class="stat-card slide-in-left">
+                    <div class="stat-header">
+                        <span class="stat-label">Total Workouts</span>
+                        <span class="stat-icon">🏋️</span>
+                    </div>
+                    <div class="stat-value" id="totalWorkouts">0</div>
+                    <div class="stat-description">All time</div>
+                </div>
+
+                <!-- This Week -->
+                <div class="stat-card slide-in-left" style="animation-delay: 0.1s;">
+                    <div class="stat-header">
+                        <span class="stat-label">This Week</span>
+                        <span class="stat-icon">📅</span>
+                    </div>
+                    <div class="stat-value" id="weekWorkouts">0</div>
+                    <div class="stat-description">Workouts completed</div>
+                </div>
+
+                <!-- Weekly Goal -->
+                <div class="stat-card slide-in-left" style="animation-delay: 0.2s;">
+                    <div class="stat-header">
+                        <span class="stat-label">Weekly Goal</span>
+                        <span class="stat-icon">🎯</span>
+                    </div>
+                    <div class="stat-value">
+                        <span id="goalProgress">0</span>/<span id="weeklyGoal">5</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="goalProgressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Total Duration -->
+                <div class="stat-card slide-in-left" style="animation-delay: 0.3s;">
+                    <div class="stat-header">
+                        <span class="stat-label">Total Duration</span>
+                        <span class="stat-icon">⏱️</span>
+                    </div>
+                    <div class="stat-value" id="totalDuration">0</div>
+                    <div class="stat-description">Minutes this week</div>
+                </div>
+            </div>
+
+            <!-- Main Grid -->
+            <div class="content-grid">
+                <!-- Left Column - Add Workout Form -->
+                <div class="form-section">
+                    <div class="card workout-form-card slide-in-right">
+                        <h2 class="section-title">
+                            <span>➕</span> Log Workout
+                        </h2>
+
+                        <form id="workoutForm" class="workout-form">
+                            <div class="form-group">
+                                <label class="form-label">Workout Type</label>
+                                <select id="workoutType" class="form-input" required>
+                                    <option value="">Select type</option>
+                                    <option value="cardio">🏃 Cardio</option>
+                                    <option value="strength">💪 Strength Training</option>
+                                    <option value="flexibility">🧘 Flexibility</option>
+                                    <option value="sports">⚽ Sports</option>
+                                </select>
+                                <span class="error-message" id="workoutTypeError">Please select a workout type</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Exercise Name</label>
+                                <input 
+                                    type="text" 
+                                    id="workoutName" 
+                                    class="form-input"
+                                    placeholder="e.g., Running, Bench Press"
+                                    required
+                                >
+                                <span class="error-message" id="workoutNameError">Please enter an exercise name</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Duration (minutes)</label>
+                                <input 
+                                    type="number" 
+                                    id="workoutDuration" 
+                                    class="form-input"
+                                    placeholder="30"
+                                    min="1"
+                                    required
+                                >
+                                <span class="error-message" id="workoutDurationError">Duration must be at least 1 minute</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Calories Burned</label>
+                                <input 
+                                    type="number" 
+                                    id="workoutCalories" 
+                                    class="form-input"
+                                    placeholder="250"
+                                    min="0"
+                                    required
+                                >
+                                <span class="error-message" id="workoutCaloriesError">Please enter calories burned</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Date</label>
+                                <input 
+                                    type="date" 
+                                    id="workoutDate" 
+                                    class="form-input"
+                                    required
+                                >
+                                <span class="error-message" id="workoutDateError">Please select a date</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Notes (optional)</label>
+                                <textarea 
+                                    id="workoutNotes" 
+                                    class="form-input form-textarea"
+                                    rows="3"
+                                    placeholder="How did it go?"
+                                ></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full">
+                                Add Workout
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Column - Workouts and Chart -->
+                <div class="data-section">
+                    <!-- Chart Section -->
+                    <div class="card chart-card slide-in-left">
+                        <h2 class="section-title">
+                            <span>📊</span> Weekly Progress
+                        </h2>
+                        <div class="chart-container">
+                            <canvas id="weeklyChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Recent Workouts -->
+                    <div class="card workouts-card slide-in-left" style="animation-delay: 0.1s;">
+                        <h2 class="section-title">
+                            <span>📋</span> Recent Workouts
+                        </h2>
+
+                        <div id="workoutsList" class="workouts-list custom-scroll">
+                            <!-- Workouts will be inserted here -->
+                            <div class="empty-state">
+                                <div class="empty-icon">🏃</div>
+                                <p class="empty-text">No workouts logged yet. Start tracking!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Success Toast -->
+    <div id="successToast" class="success-toast hidden">
+        <div class="toast-content">
+            <span class="toast-icon">✅</span>
+            <span id="successToastMessage">Success!</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
