@@ -1,328 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Tracker - Track Your Progress</title>
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FITTRACK — Premium Fitness Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-
-    <!-- ============================================
-         AUTHENTICATION SCREEN
-    ============================================ -->
+  </head>
+  <body data-theme="dark">
     <div id="authScreen" class="auth-screen">
-        <div class="auth-container">
-            <div class="auth-header fade-in">
-                <div class="auth-icon">💪</div>
-                <h1 class="auth-title">Fitness Tracker</h1>
-                <p class="auth-subtitle">Track your workouts and achieve your goals</p>
+      <div class="auth-shell">
+        <div class="auth-visual">
+          <div class="auth-brand">
+            <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <path d="M9 24h6l4-8 6 14 4-10h10" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 18v12m34-12v12M18 9v6m12-6v6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <div class="mini-label">Performance system</div>
+              <strong>FITTRACK</strong>
             </div>
+          </div>
 
-            <!-- Login Form -->
-            <div id="loginForm" class="card auth-card scale-in">
-                <h2 class="form-title">Welcome Back</h2>
-                
-                <form id="loginFormElement" class="auth-form">
-                    <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input 
-                            type="email" 
-                            id="loginEmail" 
-                            class="form-input"
-                            placeholder="your@email.com"
-                            required
-                        >
-                        <span class="error-message" id="loginEmailError"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Password</label>
-                        <input 
-                            type="password" 
-                            id="loginPassword" 
-                            class="form-input"
-                            placeholder="••••••••"
-                            required
-                        >
-                        <span class="error-message" id="loginPasswordError"></span>
-                    </div>
+          <div class="visual-copy">
+            <p class="eyebrow accent">Train smarter</p>
+            <h1>Build faster. Recover better. Stay consistent.</h1>
+            <p>Track workouts, goals, and performance trends from one premium athlete dashboard.</p>
+          </div>
 
-                    <div id="loginError" class="alert alert-error hidden"></div>
-                    
-                    <button type="submit" class="btn btn-primary btn-full">
-                        Sign In
-                    </button>
-                </form>
-
-                <div class="form-footer">
-                    <p class="footer-text">
-                        Don't have an account? 
-                        <button id="showSignupBtn" class="link-button">Sign Up</button>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Signup Form -->
-            <div id="signupForm" class="card auth-card hidden scale-in">
-                <h2 class="form-title">Create Account</h2>
-                
-                <form id="signupFormElement" class="auth-form">
-                    <div class="form-group">
-                        <label class="form-label">Full Name</label>
-                        <input 
-                            type="text" 
-                            id="signupName" 
-                            class="form-input"
-                            placeholder="John Doe"
-                            required
-                        >
-                        <span class="error-message" id="signupNameError"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input 
-                            type="email" 
-                            id="signupEmail" 
-                            class="form-input"
-                            placeholder="your@email.com"
-                            required
-                        >
-                        <span class="error-message" id="signupEmailError"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Password</label>
-                        <input 
-                            type="password" 
-                            id="signupPassword" 
-                            class="form-input"
-                            placeholder="••••••••"
-                            required
-                        >
-                        <span class="error-message" id="signupPasswordError">Password must be at least 6 characters</span>
-                    </div>
-
-                    <div id="signupError" class="alert alert-error hidden"></div>
-                    
-                    <button type="submit" class="btn btn-primary btn-full">
-                        Create Account
-                    </button>
-                </form>
-
-                <div class="form-footer">
-                    <p class="footer-text">
-                        Already have an account? 
-                        <button id="showLoginBtn" class="link-button">Sign In</button>
-                    </p>
-                </div>
-            </div>
+          <ul class="feature-list">
+            <li>Weekly goal tracking</li>
+            <li>Smart analytics</li>
+            <li>Workout history</li>
+          </ul>
         </div>
+
+        <div class="auth-panel">
+          <div class="auth-card">
+            <div class="auth-logo">
+              <svg class="brand-mark small" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <path d="M9 24h6l4-8 6 14 4-10h10" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 18v12m34-12v12M18 9v6m12-6v6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+              </svg>
+              FITTRACK
+            </div>
+
+            <div class="auth-intro">
+              <p class="eyebrow accent"><i class="fa-solid fa-hand-wave"></i> Welcome</p>
+              <h2 id="authFormTitle"><i class="fa-solid fa-hand-wave"></i> Welcome back</h2>
+              <p id="authFormSubtitle"><i class="fa-solid fa-dumbbell"></i> Sign in to continue your fitness journey</p>
+            </div>
+
+            <form id="loginForm" class="auth-form" novalidate>
+              <div class="field-group">
+                <label for="loginEmail">Email</label>
+                <input id="loginEmail" type="email" name="email" placeholder="your@email.com" autocomplete="email" />
+                <span class="field-error" id="loginEmailError"></span>
+              </div>
+
+              <div class="field-group">
+                <label for="loginPassword">Password</label>
+                <input id="loginPassword" type="password" name="password" placeholder="••••••••" autocomplete="current-password" />
+                <span class="field-error" id="loginPasswordError"></span>
+              </div>
+
+              <div id="loginError" class="inline-alert error hidden"></div>
+
+              <button type="submit" class="primary-btn full-width"><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In</button>
+            </form>
+
+            <form id="signupForm" class="auth-form hidden" novalidate>
+              <div class="field-group">
+                <label for="signupName">Full name</label>
+                <input id="signupName" type="text" name="name" placeholder="Alex Morgan" autocomplete="name" />
+                <span class="field-error" id="signupNameError"></span>
+              </div>
+
+              <div class="field-group">
+                <label for="signupEmail">Email</label>
+                <input id="signupEmail" type="email" name="email" placeholder="your@email.com" autocomplete="email" />
+                <span class="field-error" id="signupEmailError"></span>
+              </div>
+
+              <div class="field-group">
+                <label for="signupPassword">Password</label>
+                <input id="signupPassword" type="password" name="password" placeholder="••••••••" autocomplete="new-password" />
+                <span class="field-error" id="signupPasswordError">Password must be at least 6 characters</span>
+              </div>
+
+              <div id="signupError" class="inline-alert error hidden"></div>
+
+              <button type="submit" class="primary-btn full-width"><i class="fa-solid fa-user-plus"></i> Create Account</button>
+            </form>
+
+            <div class="auth-switch">
+              <span id="authSwitchPrompt">Need an account?</span>
+              <button type="button" id="showSignupBtn" class="link-btn"><i class="fa-solid fa-user-plus"></i> Create one</button>
+              <button type="button" id="showLoginBtn" class="link-btn hidden"><i class="fa-solid fa-arrow-left"></i> Back to sign in</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- ============================================
-         MAIN APPLICATION
-    ============================================ -->
-    <div id="appScreen" class="hidden">
-        <!-- Header -->
-        <header class="app-header">
-            <div class="header-container">
-                <div class="header-brand">
-                    <span class="brand-icon">💪</span>
-                    <div class="brand-info">
-                        <h1 class="brand-title">Fitness Tracker</h1>
-                        <p class="brand-welcome" id="userWelcome">Welcome back!</p>
-                    </div>
-                </div>
-                <button id="logoutBtn" class="btn btn-logout">
-                    Logout
-                </button>
+    <div id="appScreen" class="app-layout hidden">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="brand-ui">
+            <svg class="brand-mark small" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <path d="M9 24h6l4-8 6 14 4-10h10" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 18v12m34-12v12M18 9v6m12-6v6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <strong>FITTRACK</strong>
+              <small>Performance dashboard</small>
             </div>
+          </div>
+        </div>
+
+        <nav class="nav-stack" aria-label="Main navigation">
+          <button type="button" class="nav-item active" data-view="dashboard">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 13.5h7V20H4v-6.5Zm9-11h7v8.5h-7V2.5ZM13 14.5h7V20h-7v-5.5ZM4 2.5h7v7H4v-7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><i class="fa-solid fa-house"></i> Dashboard</span>
+          </button>
+          <button type="button" class="nav-item" data-view="workouts">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 18V6m10 12V6M4 9.5h3m10 0h3M4 14.5h3m10 0h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span><i class="fa-solid fa-dumbbell"></i> Workouts</span>
+          </button>
+          <button type="button" class="nav-item" data-view="analytics">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 18V9m7 9V5m7 13v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span><i class="fa-solid fa-chart-column"></i> Analytics</span>
+          </button>
+          <button type="button" class="nav-item" data-view="goals">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 12h10M12 7v10M7 7.5A2.5 2.5 0 0 1 9.5 5h5A2.5 2.5 0 0 1 17 7.5v9A2.5 2.5 0 0 1 14.5 19h-5A2.5 2.5 0 0 1 7 16.5v-9Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><i class="fa-solid fa-bullseye"></i> Goals</span>
+          </button>
+          <button type="button" class="nav-item" data-view="profile">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-7 7a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span><i class="fa-solid fa-user"></i> Profile</span>
+          </button>
+          <button type="button" class="nav-item" data-view="settings">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5v2m0 15v2m6.5-9.5h-2M7.5 12h-2M17.4 6.6l-1.4 1.4M8 15.9l-1.4 1.4M17.4 17.4l-1.4-1.4M8 8.1 6.6 6.7M12 8.5A3.5 3.5 0 1 1 12 15.5 3.5 3.5 0 0 1 12 8.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><i class="fa-solid fa-gear"></i> Settings</span>
+          </button>
+        </nav>
+
+        <div class="nav-divider"></div>
+
+        <div class="sidebar-footer">
+          <div class="mini-profile">
+            <div id="sidebarUserInitial" class="mini-avatar">A</div>
+            <div>
+              <strong id="sidebarUserName">Alex Morgan</strong>
+              <small id="sidebarUserEmail">alex@fittrack.app</small>
+            </div>
+          </div>
+          <button type="button" id="profileShortcutBtn" class="ghost-btn"><i class="fa-solid fa-user"></i> View profile</button>
+          <button type="button" id="logoutBtn" class="ghost-btn" style="margin-top: 10px;"><i class="fa-solid fa-right-from-bracket"></i> Log out</button>
+        </div>
+      </aside>
+
+      <div class="main-panel">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button type="button" class="icon-btn mobile-trigger" id="mobileMenuBtn" aria-label="Toggle menu">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div>
+              <div class="page-breadcrumb"><i class="fa-solid fa-bolt"></i> FITTRACK</div>
+              <strong id="currentPageLabel"><i class="fa-solid fa-house"></i> Dashboard</strong>
+            </div>
+          </div>
+
+          <div class="topbar-actions">
+            <label class="search-box" aria-label="Search workouts">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input id="globalSearch" type="search" placeholder="Search workouts" />
+            </label>
+            <button type="button" id="themeToggleBtn" class="icon-btn" aria-label="Toggle theme">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5v2.2m0 12.6v2.2M5.7 5.7l1.6 1.6m9.4 9.4 1.6 1.6M3.5 12h2.2m12.6 0h2.2M5.7 18.3l1.6-1.6m9.4-9.4 1.6-1.6M12 7.5A4.5 4.5 0 1 1 12 16.5 4.5 4.5 0 0 1 12 7.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" id="headerUserInitial" class="avatar-btn" aria-label="Open profile">A</button>
+          </div>
         </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Stats Grid -->
-            <div class="stats-grid">
-                <!-- Total Workouts -->
-                <div class="stat-card slide-in-left">
-                    <div class="stat-header">
-                        <span class="stat-label">Total Workouts</span>
-                        <span class="stat-icon">🏋️</span>
-                    </div>
-                    <div class="stat-value" id="totalWorkouts">0</div>
-                    <div class="stat-description">All time</div>
-                </div>
-
-                <!-- This Week -->
-                <div class="stat-card slide-in-left" style="animation-delay: 0.1s;">
-                    <div class="stat-header">
-                        <span class="stat-label">This Week</span>
-                        <span class="stat-icon">📅</span>
-                    </div>
-                    <div class="stat-value" id="weekWorkouts">0</div>
-                    <div class="stat-description">Workouts completed</div>
-                </div>
-
-                <!-- Weekly Goal -->
-                <div class="stat-card slide-in-left" style="animation-delay: 0.2s;">
-                    <div class="stat-header">
-                        <span class="stat-label">Weekly Goal</span>
-                        <span class="stat-icon">🎯</span>
-                    </div>
-                    <div class="stat-value">
-                        <span id="goalProgress">0</span>/<span id="weeklyGoal">5</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="goalProgressBar" style="width: 0%"></div>
-                    </div>
-                </div>
-
-                <!-- Total Duration -->
-                <div class="stat-card slide-in-left" style="animation-delay: 0.3s;">
-                    <div class="stat-header">
-                        <span class="stat-label">Total Duration</span>
-                        <span class="stat-icon">⏱️</span>
-                    </div>
-                    <div class="stat-value" id="totalDuration">0</div>
-                    <div class="stat-description">Minutes this week</div>
-                </div>
-            </div>
-
-            <!-- Main Grid -->
-            <div class="content-grid">
-                <!-- Left Column - Add Workout Form -->
-                <div class="form-section">
-                    <div class="card workout-form-card slide-in-right">
-                        <h2 class="section-title">
-                            <span>➕</span> Log Workout
-                        </h2>
-
-                        <form id="workoutForm" class="workout-form">
-                            <div class="form-group">
-                                <label class="form-label">Workout Type</label>
-                                <select id="workoutType" class="form-input" required>
-                                    <option value="">Select type</option>
-                                    <option value="cardio">🏃 Cardio</option>
-                                    <option value="strength">💪 Strength Training</option>
-                                    <option value="flexibility">🧘 Flexibility</option>
-                                    <option value="sports">⚽ Sports</option>
-                                </select>
-                                <span class="error-message" id="workoutTypeError">Please select a workout type</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Exercise Name</label>
-                                <input 
-                                    type="text" 
-                                    id="workoutName" 
-                                    class="form-input"
-                                    placeholder="e.g., Running, Bench Press"
-                                    required
-                                >
-                                <span class="error-message" id="workoutNameError">Please enter an exercise name</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Duration (minutes)</label>
-                                <input 
-                                    type="number" 
-                                    id="workoutDuration" 
-                                    class="form-input"
-                                    placeholder="30"
-                                    min="1"
-                                    required
-                                >
-                                <span class="error-message" id="workoutDurationError">Duration must be at least 1 minute</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Calories Burned</label>
-                                <input 
-                                    type="number" 
-                                    id="workoutCalories" 
-                                    class="form-input"
-                                    placeholder="250"
-                                    min="0"
-                                    required
-                                >
-                                <span class="error-message" id="workoutCaloriesError">Please enter calories burned</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Date</label>
-                                <input 
-                                    type="date" 
-                                    id="workoutDate" 
-                                    class="form-input"
-                                    required
-                                >
-                                <span class="error-message" id="workoutDateError">Please select a date</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Notes (optional)</label>
-                                <textarea 
-                                    id="workoutNotes" 
-                                    class="form-input form-textarea"
-                                    rows="3"
-                                    placeholder="How did it go?"
-                                ></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary btn-full">
-                                Add Workout
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-                <!-- Right Column - Workouts and Chart -->
-                <div class="data-section">
-                    <!-- Chart Section -->
-                    <div class="card chart-card slide-in-left">
-                        <h2 class="section-title">
-                            <span>📊</span> Weekly Progress
-                        </h2>
-                        <div class="chart-container">
-                            <canvas id="weeklyChart"></canvas>
-                        </div>
-                    </div>
-
-                    <!-- Recent Workouts -->
-                    <div class="card workouts-card slide-in-left" style="animation-delay: 0.1s;">
-                        <h2 class="section-title">
-                            <span>📋</span> Recent Workouts
-                        </h2>
-
-                        <div id="workoutsList" class="workouts-list custom-scroll">
-                            <!-- Workouts will be inserted here -->
-                            <div class="empty-state">
-                                <div class="empty-icon">🏃</div>
-                                <p class="empty-text">No workouts logged yet. Start tracking!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+        <main id="pageContent" class="page-content"></main>
+      </div>
     </div>
 
-    <!-- Loading Overlay -->
-    <div id="loadingOverlay" class="loading-overlay hidden">
-        <div class="loader"></div>
-    </div>
+    <div id="modalRoot" class="modal-root" aria-live="polite"></div>
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
-    <!-- Success Toast -->
-    <div id="successToast" class="success-toast hidden">
-        <div class="toast-content">
-            <span class="toast-icon">✅</span>
-            <span id="successToastMessage">Success!</span>
-        </div>
-    </div>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <button type="button" class="mobile-nav-item active" data-view="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 13.5h7V20H4v-6.5Zm9-11h7v8.5h-7V2.5ZM13 14.5h7V20h-7v-5.5ZM4 2.5h7v7H4v-7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><i class="fa-solid fa-house"></i> Home</span>
+      </button>
+      <button type="button" class="mobile-nav-item" data-view="workouts">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 18V6m10 12V6M4 9.5h3m10 0h3M4 14.5h3m10 0h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span><i class="fa-solid fa-dumbbell"></i> Log</span>
+      </button>
+      <button type="button" class="mobile-nav-item" data-view="analytics">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 18V9m7 9V5m7 13v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span><i class="fa-solid fa-chart-line"></i> Stats</span>
+      </button>
+      <button type="button" class="mobile-nav-item" data-view="profile">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-7 7a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span><i class="fa-solid fa-user"></i> Me</span>
+      </button>
+    </nav>
 
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
